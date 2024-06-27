@@ -18,17 +18,17 @@ class Reading(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     # TODO: Add other info fields according to hardware
-    data1 = models.FloatField(default=0)
-    data2 = models.FloatField(default=0)
-    data3 = models.FloatField(default=0)
-    data4 = models.FloatField(default=0)
-    data5 = models.FloatField(default=0)
-    data6 = models.FloatField(default=0)
-    data7 = models.FloatField(default=0)
-    data8 = models.FloatField(default=0)
-    data9 = models.FloatField(default=0)
-    data10 = models.FloatField(default=0)
-    data11 = models.FloatField(default=0)
+    data1 = models.FloatField(default=0, null=True)
+    data2 = models.FloatField(default=0, null=True)
+    data3 = models.FloatField(default=0, null=True)
+    data4 = models.FloatField(default=0, null=True)
+    data5 = models.FloatField(default=0, null=True)
+    data6 = models.FloatField(default=0, null=True)
+    data7 = models.FloatField(default=0, null=True)
+    data8 = models.FloatField(default=0, null=True)
+    data9 = models.FloatField(default=0, null=True)
+    data10 = models.FloatField(default=0, null=True)
+    data11 = models.FloatField(default=0, null=True)
 
     def __str__(self) -> str:
         return f"Reading {self.id} from {self.device}"
