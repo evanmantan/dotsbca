@@ -1,6 +1,4 @@
 from django.urls import path
-from .views import ReadingView
+from .views import devices_crud
 
-urlpatterns = [
-    path("<str:device_id>/readings/", ReadingView.as_view(), name="reading_create")
-]
+urlpatterns = [path("<str:product_key>/", devices_crud, name="readings_api")]
