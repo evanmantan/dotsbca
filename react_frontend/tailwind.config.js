@@ -9,7 +9,8 @@ export default {
         primary: "#1645AE",
         secondary: "#E85D17",
         'white': "#FAFBFC"
-      }
+      },
+      dropShadow: { text: "0 4px 4px rgba(0, 0, 0, 0.25)" },
     },
   },
   plugins: [],
