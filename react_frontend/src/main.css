@@ -22,4 +22,8 @@ html {
 body {
   margin-bottom: 9rem;
 }
+
+th, td {
+  padding: 15px;
+}
   

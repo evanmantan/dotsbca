@@ -54,11 +54,13 @@ const ReadingDetail = () => {
             </p>
             <table>
                 <thead>
-                    <th>Warna</th>
-                    <th>Intensitas</th>
+                    <tr>
+                        <th>Warna</th>
+                        <th>Intensitas</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    {readingData && Object.entries(readingData)
+                    {Object.entries(readingData)
                         .filter(([key]) => !excludedColumns.has(key))
                         .map(([key,value]) => (
                         <tr key={key}>
