@@ -13,7 +13,7 @@ const ReadingDetail = () => {
     useEffect(() => {
         const fetchReadingData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/devices/${deviceId}/${readingId}`);
+                const response = await axios.get(`https://evanmantan.pythonanywhere.com/api/devices/${deviceId}/${readingId}`);
                 setReadingData(response.data);
             } catch (error) {
                 setError(error.message);
