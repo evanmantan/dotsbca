@@ -1,0 +1,25 @@
+{
+    "builds": [
+        {
+            "src": "django_backend/django_rest/wsgi.py",
+            "use": "@vercel/python"
+        },
+        {
+            "src": "react_frontend/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "react_frontend/build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "django_backend/django_rest/wsgi.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "react_frontend/build/$1"
+        }
+    ]
+}
