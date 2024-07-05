@@ -2,11 +2,24 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Device, Reading
-from .serializers import ReadingSerializer
+from .serializers import DeviceSerializer, ReadingSerializer
+
+
+@api_view(["GET"])
+def device_list(request):
+    if request.method == "GET":
+        try:
+            devices = Device.objects.all()
+        except Device.DoesNotExist:
+            return Response(
+                {"error": "Device not found!"}, status=status.HTTP_404_NOT_FOUND
+            )
+        serializer = DeviceSerializer(devices, many=True)
+        return Response(serializer.data)
 
 
 @api_view(["GET", "POST"])
-def device_list(request, product_key, *arg, **kwargs):
+def reading_list(request, product_key, *arg, **kwargs):
     if request.method == "POST":
         try:
             device = Device.objects.get(product_key=product_key)

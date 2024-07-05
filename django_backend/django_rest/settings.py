@@ -26,15 +26,16 @@ SECRET_KEY = "django-insecure-as&%m55klpex_z*j)=g6z2keg(oqhw+*_9g_ngx2wa=7kopu5h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost", "evanmantan.pythonanywhere.com"]
 
-# For development
-CORS_ORIGIN_ALLOW_ALL = False
+# # For development
+# CORS_ORIGIN_ALLOW_ALL = False
 
 
-CORS_ALLOWED_ORIGINS = [
-    'https://*.vercel.app',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://*.on-acorn.io",
+#     "http://*.on-acorn.io",
+# ]
 
 
 # Application definition
@@ -129,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
