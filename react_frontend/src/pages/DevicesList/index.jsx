@@ -55,7 +55,7 @@ const DevicesList = () => {
                             <td>{Number(key)+1}</td>
                             <td>{deviceList[key].name}</td>
                             <td>{deviceList[key].product_key}</td>
-                            <td><a href={`./${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
+                            <td><a href={`/devices/${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
                         </tr>
                     ))}
                 </tbody>
