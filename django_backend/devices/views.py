@@ -2,11 +2,11 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Device, Reading
-from .serializers import DeviceSerializer, ReadingSerializer
+from .serializers import ReadingSerializer
 
 
-@api_view(["GET", "POST", ""])
-def devices_crud(request, product_key, *arg, **kwargs):
+@api_view(["GET", "POST"])
+def device_list(request, product_key, *arg, **kwargs):
     if request.method == "POST":
         try:
             device = Device.objects.get(product_key=product_key)
@@ -14,7 +14,7 @@ def devices_crud(request, product_key, *arg, **kwargs):
             return Response(
                 {"error": "Device not found!"}, status=status.HTTP_404_NOT_FOUND
             )
-        
+
         data = {
             "device": device.id,
             "data1": request.data.get("data1"),
@@ -48,3 +48,40 @@ def devices_crud(request, product_key, *arg, **kwargs):
         serializer = ReadingSerializer(readings, many=True)
 
         return Response(serializer.data)
+
+
+@api_view(["GET", "DELETE"])
+def reading_detail(request, product_key, reading_id, *arg, **kwarg):
+    if request.method == "GET":
+        try:
+            device = Device.objects.get(product_key=product_key)
+        except Device.DoesNotExist:
+            return Response(
+                {"error": "Device not found!"}, status=status.HTTP_404_NOT_FOUND
+            )
+        reading = Reading.objects.get(device=device.id, pk=reading_id)
+        serializer = ReadingSerializer(reading)
+
+        return Response(serializer.data)
+
+    if request.method == "DELETE":
+        try:
+            device = Device.objects.get(product_key=product_key)
+        except Device.DoesNotExist:
+            return Response(
+                {"error": "Device not found!"}, status=status.HTTP_404_NOT_FOUND
+            )
+        try:
+            device.delete()
+        except:
+            return Response(
+                {"error": "Failed deleting reading!"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        return Response(
+            {
+                "message": f"Reading {reading_id} from Device {product_key} successfully deleted!"
+            },
+            status=status.HTTP_200_OK,
+        )

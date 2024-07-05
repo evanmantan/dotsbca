@@ -1,4 +1,7 @@
 from django.urls import path
-from .views import devices_crud
+from .views import device_list, reading_detail
 
-urlpatterns = [path("<str:product_key>/", devices_crud, name="readings_api")]
+urlpatterns = [
+    path("<str:product_key>/", device_list, name="device_list"),
+    path("<str:product_key>/<int:reading_id>", reading_detail, name="reading_detail"),
+]
