@@ -21,7 +21,7 @@ function CustomLink({ children, to, className, addStyle, ...props }) {
 const Navbar = () => {
     return (
         <>
-            <div className="bg-primary flex flex-row w-full px-8">
+            <div className="bg-primary flex flex-row w-full px-8 absolute">
                 <div>
                     <Link to="/">
                         <img src={logo} alt="DOTS BCa" className="h-16 w-auto"/>

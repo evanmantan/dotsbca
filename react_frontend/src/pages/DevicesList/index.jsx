@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import { API_URL } from "../../constants";
+import CustomDiv from "../../components/CustomDiv";
 
 const DevicesList = () => {
     const [deviceList, setDeviceList] = useState(null)
@@ -10,7 +12,7 @@ const DevicesList = () => {
     useEffect(() => {
         const fetchDeviceList = async () => {
             try {
-                const response = await axios.get(`https://evanmantan.pythonanywhere.com/api/devices/`)
+                const response = await axios.get(`${API_URL}api/devices/`)
                 setDeviceList(response.data)
             } catch (error) {
                 setError(error.message)
@@ -20,28 +22,31 @@ const DevicesList = () => {
         };
 
         fetchDeviceList();
-    });
+    }, [API_URL]);
 
     if (loading) {
-        return <p>Loading Daftar Perangkat...</p>
+        return <CustomDiv title="Loading Daftar Perangkat..." />
     }
 
     if (!deviceList) {
-        return <p>Belum Ada Perangkat yang Terhubung</p>
+        return <CustomDiv title="Belum Ada Perangkat yang Terhubung" />
     }
 
     if (error) {
-        return <p>Error: {error}</p>
+        let children = (
+            <h1>Error: {error}</h1>
+        )
+        return <CustomDiv title="Error" children={children} />
     }
 
-    return (
+    let baseUrl = window.location.href;
+    if (!baseUrl.endsWith("/")) baseUrl += "/";
+
+    let children = (
         <>
-            <Helmet>
-                <title>Perangkat</title>
-            </Helmet>
-            <h1>Daftar Perangkat</h1>
-            <table className="table-auto">
-                <thead>
+            <h1 className="text-xl font-medium">Daftar Perangkat</h1>
+            <table className="shadow-2xl shadow-orange-200">
+                <thead className="bg-blue-900 text-white">
                     <tr>
                         <th>No</th>
                         <th>Nama Perangkat</th>
@@ -55,13 +60,14 @@ const DevicesList = () => {
                             <td>{Number(key)+1}</td>
                             <td>{deviceList[key].name}</td>
                             <td>{deviceList[key].product_key}</td>
-                            <td><a href={`/devices/${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
+                            <td><a href={`${baseUrl}${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </>
     )
+    return <CustomDiv title="Daftar Perangkat" children={children}/>
 }
 
 export default DevicesList;
