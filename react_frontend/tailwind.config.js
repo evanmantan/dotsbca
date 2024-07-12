@@ -6,7 +6,7 @@ export default {
   ],  theme: {
     extend: {
       backgroundImage: {
-        "about-us": "url(src/assets/home/about_us.png)"
+        "about-us": "url('/src/assets/home/about_us.png')"
       },
       boxShadow: {
         "top": "-20px 0px rgba(0, 0, 0, 1)"
