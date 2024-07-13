@@ -100,7 +100,7 @@ const ReadingDetail = () => {
             <h1 className="text-xl font-medium">
                 Perangkat {deviceId} Data {readingId}
             </h1>
-            <div className="flex px-24 gap-8 items-center justify-center">
+            <div className="flex px-24 gap-8 w-3/4 items-center justify-center">
                 <table className="shadow-2xl shadow-orange-200">
                     <thead className="bg-blue-900 text-white">
                         <tr>
@@ -118,7 +118,9 @@ const ReadingDetail = () => {
                         ))}
                     </tbody>
                 </table>
-                <Bar data={data} options={options}/>
+                <div className="grow h-full">
+                    <Bar data={data} options={options}/>
+                </div>
             </div>
         </>
     )
