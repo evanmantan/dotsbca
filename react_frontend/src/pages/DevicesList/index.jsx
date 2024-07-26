@@ -44,27 +44,31 @@ const DevicesList = () => {
 
     let children = (
         <>
-            <h1 className="text-xl font-medium">Daftar Perangkat</h1>
-            <table className="shadow-2xl shadow-orange-200">
-                <thead className="bg-blue-900 text-white">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Perangkat</th>
-                        <th>Kode Produk</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(deviceList).map((key) => (
-                        <tr className="" key={key}>
-                            <td>{Number(key)+1}</td>
-                            <td>{deviceList[key].name}</td>
-                            <td>{deviceList[key].product_key}</td>
-                            <td><a href={`${baseUrl}${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
+            <div className="w-full px-4 text-center overflow-x-auto">
+                <h1 className="text-xl font-medium">Daftar Perangkat</h1>
+            </div>
+            <div className="overflow-x-auto w-full px-4">
+                <table className="shadow-2xl shadow-orange-200 mx-auto">
+                    <thead className="bg-blue-900 text-white">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Perangkat</th>
+                            <th>Kode Produk</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {Object.keys(deviceList).map((key) => (
+                            <tr className="" key={key}>
+                                <td>{Number(key)+1}</td>
+                                <td>{deviceList[key].name}</td>
+                                <td>{deviceList[key].product_key}</td>
+                                <td><a href={`${baseUrl}${deviceList[key].product_key}/`}>Hasil Pembacaan</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>  
         </>
     )
     return <CustomDiv title="Daftar Perangkat" children={children}/>

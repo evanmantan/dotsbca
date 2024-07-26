@@ -52,25 +52,29 @@ const DeviceDetail = () => {
 
     let children = (
         <>
-            <h1 className="text-xl font-medium">Data Perangkat {deviceId}</h1>
-            <table className="shadow-2xl shadow-orange-200">
-                <thead className="bg-blue-900 text-white">
-                    <tr>
-                        <th>No</th>
-                        <th>Waktu Pembacaan</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(readingData).map((key) => (
-                        <tr key={key} className="hover:bg-gray-300">
-                            <td>{Number(key)+1}</td>
-                            <td>{formatDate(readingData[key].timestamp)}</td>
-                            <td><a href={`${baseUrl}${readingData[key].id}`}>Detail</a></td>
+            <div className="overflow-x-auto w-full px-4 text-center">
+                <h1 className="text-xl font-medium">Data Perangkat {deviceId}</h1>
+            </div>
+            <div className="overflow-x-auto w-full">
+                <table className="shadow-2xl shadow-orange-200 mx-auto">
+                    <thead className="bg-blue-900 text-white">
+                        <tr>
+                            <th>No</th>
+                            <th>Waktu Pembacaan</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {Object.keys(readingData).map((key) => (
+                            <tr key={key} className="hover:bg-gray-300">
+                                <td>{Number(key)+1}</td>
+                                <td>{formatDate(readingData[key].timestamp)}</td>
+                                <td><a href={`${baseUrl}${readingData[key].id}`}>Detail</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </>
     )
     return <CustomDiv title={`Data Perangkat ${deviceId}`} children={children}/>

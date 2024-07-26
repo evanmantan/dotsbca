@@ -96,12 +96,12 @@ const ReadingDetail = () => {
 
 
     let children = (
-        <>
+        <div className="w-full flex flex-col items-center gap-8 px-4 overflow-x-auto text-center">
             <h1 className="text-xl font-medium">
                 Perangkat {deviceId} Data {readingId}
             </h1>
-            <div className="flex px-24 gap-8 w-3/4 items-center justify-center">
-                <table className="shadow-2xl shadow-orange-200">
+            <div className="flex flex-col md:flex-row gap-16 md:gap-8 items-center justify-center">
+                <table className="shadow-2xl shadow-orange-200 mx-auto">
                     <thead className="bg-blue-900 text-white">
                         <tr>
                             <th>Warna</th>
@@ -117,12 +117,12 @@ const ReadingDetail = () => {
                             </tr>
                         ))}
                     </tbody>
-                </table>
-                <div className="grow h-full">
+                </table>           
+                <div className="h-full border border-opacity-20 px-2 py-1 border-black shadow-2xl shadow-orange-200">
                     <Bar data={data} options={options}/>
                 </div>
             </div>
-        </>
+        </div>
     )
     return <CustomDiv title={`Perangkat ${deviceId} Data ${readingId}`} children={children} />
 };

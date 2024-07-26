@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 const CustomDiv = ({ title, children }) => {
     const heading = (
-        <h1 className="text-xl font-medium">{title}</h1>
+        <h1 className="text-xl font-medium text-center overflow-x-auto">{title}</h1>
     )
     return (
         <>
