@@ -14,7 +14,7 @@ const ReadingDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const excludedColumns = new Set(['id', 'timestamp', 'updated_at', 'device', 'data10', 'data11'])
+    const excludedColumns = new Set(['id', 'timestamp', 'updated_at', 'device', 'data10', 'data11', 'probability', 'diagnosis'])
     const customNames = {
         data1: "415 nm",
         data2: "445 nm",
@@ -96,33 +96,40 @@ const ReadingDetail = () => {
 
 
     let children = (
-        <div className="w-full flex flex-col items-center gap-8 px-4 overflow-x-auto text-center">
-            <h1 className="text-xl font-medium">
-                Perangkat {deviceId} Data {readingId}
-            </h1>
-            <div className="flex flex-col md:flex-row gap-16 md:gap-8 items-center justify-center">
-                <table className="shadow-2xl shadow-orange-200 mx-auto">
-                    <thead className="bg-blue-900 text-white">
-                        <tr>
-                            <th>Warna</th>
-                            <th>Intensitas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData
-                            .map(([key,value]) => (
-                            <tr key={key}>
-                                <td>{customNames[key] || key}</td>
-                                <td>{value}</td>
+        <>
+            <div className="w-full flex flex-col items-center gap-8 px-4 overflow-x-auto text-center">
+                <h1 className="text-xl font-medium">
+                    Perangkat {deviceId} Data {readingId}
+                </h1>
+                <div className="flex flex-col md:flex-row gap-16 md:gap-8 items-center justify-center">
+                    <table className="shadow-2xl shadow-orange-200 mx-auto">
+                        <thead className="bg-blue-900 text-white">
+                            <tr>
+                                <th>Warna</th>
+                                <th>Intensitas</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>           
-                <div className="h-full border border-opacity-20 px-2 py-1 border-black shadow-2xl shadow-orange-200">
-                    <Bar data={data} options={options}/>
+                        </thead>
+                        <tbody>
+                            {filteredData
+                                .map(([key,value]) => (
+                                <tr key={key}>
+                                    <td>{customNames[key] || key}</td>
+                                    <td>{value}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>           
+                    <div className="h-full border border-opacity-20 px-2 py-1 border-black shadow-2xl shadow-orange-200">
+                        <Bar data={data} options={options}/>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div>
+                <h1 className={`text-4xl font-bold ${readingData["diagnosis"] ? 'text-secondary' : 'text-primary'}`}>
+                    {readingData["probability"]}% {readingData["diagnosis"] ? "Positif" : "Negatif"}
+                </h1>
+            </div>
+        </>
     )
     return <CustomDiv title={`Perangkat ${deviceId} Data ${readingId}`} children={children} />
 };
