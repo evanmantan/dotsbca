@@ -126,7 +126,7 @@ const ReadingDetail = () => {
             </div>
             <div>
                 <h1 className={`text-4xl font-bold ${readingData["diagnosis"] ? 'text-secondary' : 'text-primary'}`}>
-                    {readingData["probability"]}% {readingData["diagnosis"] ? "Positif" : "Negatif"}
+                    {readingData["probability"]}% - {readingData["diagnosis"] ? "Positif" : "Negatif"}
                 </h1>
             </div>
         </>
